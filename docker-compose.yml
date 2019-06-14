@@ -1,0 +1,4 @@
+mail:
+  image: mail-service:latest
+  ports:
+    - 8080:80
