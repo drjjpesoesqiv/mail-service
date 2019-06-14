@@ -28,6 +28,9 @@ try
   if ( ! filter_var($to, FILTER_VALIDATE_EMAIL, $filterVarOpts))
     throw new HTTPException(422, 'invalid to address');
 
+  if (strlen($subject) > 78)
+    throw new HTTPException(422, 'subject too long');
+
   mail($to, $subject, $message);
 }
 catch (HTTPException $e)
