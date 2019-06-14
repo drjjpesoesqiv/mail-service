@@ -19,10 +19,13 @@ try
     $$post = $_POST[$post];
   }
 
-  if ( ! filter_var($from, FILTER_VALIDATE_EMAIL))
-    throw new HTTPException(422, 'invalid from address');
+  $filterVarOpts = [
+    'options' => [
+      'default' => false
+    ]
+  ];
   
-  if ( ! filter_var($to, FILTER_VALIDATE_EMAIL))
+  if ( ! filter_var($to, FILTER_VALIDATE_EMAIL, $filterVarOpts))
     throw new HTTPException(422, 'invalid to address');
 
   mail($to, $subject, $message);
